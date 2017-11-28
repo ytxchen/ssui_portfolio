@@ -32,7 +32,7 @@ class Thumbnails extends Component {
     } 
     return (
       <div className="photo-project-overview">
-        <h4> {name} </h4>
+        <div className="thumbnail-project-label"> {name} </div>
         {indices.map((i) => {
           return this.renderThumbnail(tag, i);
         })}
@@ -48,11 +48,18 @@ class Thumbnails extends Component {
 
   }
 
+  constructClassNames() {
+    var classNames = "drawer thumbnail-drawer";
+    if (!this.props.isOpen) {
+      classNames += " thumbnail-drawer-closed";
+    }
+    return classNames;
+  }
+
   render() {
     return (
-      <div className="drawer thumbnail-drawer">
-        <div className="thumbnail-drawer-button close-thumbnail-drawer-button"
-             onClick={this.close.bind(this)} />      
+      <div className={this.constructClassNames()}>
+      
 
         {this.renderProject('Unfolding Environment', 'ue', 16)}
         {this.renderProject('BW-TWO', 'bwii', 15)}

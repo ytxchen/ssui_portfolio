@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+// import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import '../css/shared.css';
 import '../css/photos.css';
 
@@ -26,18 +26,64 @@ class Photos extends Component {
   }
 
   renderThumbnailDrawer() {
+    return (
+        <Thumbnails isOpen={this.state.thumbnailDrawerOpen}
+                    close={this.closeThumbnailDrawer.bind(this)}/>
+    );
+  }
+
+  openProjectsDrawer() {
+    this.setState({projectsDrawerOpen: true});
+  }
+
+  closeProjectsDrawer() {
+    this.setState({projectsDrawerOpen: false});
+  }
+
+  renderProjectsDrawer() {
+    return (
+        <PhotoProjects isOpen={this.state.projectsDrawerOpen}
+                       close={this.closeProjectsDrawer.bind(this)}/>
+    );
+  }
+
+  renderThumbnailDrawerButton() {
     if (this.state.thumbnailDrawerOpen) {
-      return <Thumbnails close={this.closeThumbnailDrawer.bind(this)}/>;
+      return (
+        <div className="thumbnail-drawer-button close-thumbnail-drawer-button"
+             onClick={this.closeThumbnailDrawer.bind(this)} />
+      );
+    } else {
+      return (
+        <div className="thumbnail-drawer-button open-thumbnail-drawer-button"
+             onClick={this.openThumbnailDrawer.bind(this)} />
+      );
+    }
+  }
+
+  renderProjectsDrawerButton() {
+    if (this.state.projectsDrawerOpen) {
+      return (
+        <div className="projects-drawer-button close-projects-drawer-button"
+             onClick={this.closeProjectsDrawer.bind(this)} />
+      );
+    } else {
+      return (
+        <div className="projects-drawer-button open-projects-drawer-button"
+             onClick={this.openProjectsDrawer.bind(this)} />
+      );
     }
   }
 
   render() {
     return (
       <div>
-        <div className="projects-drawer-button open-projects-drawer-button"/>
-        <div className="thumbnail-drawer-button open-thumbnail-drawer-button"
-             onClick={this.openThumbnailDrawer.bind(this)} />
-          {this.renderThumbnailDrawer()}
+        {this.renderProjectsDrawerButton()}
+        {this.renderProjectsDrawer()}
+        
+        {this.renderThumbnailDrawerButton()}
+        {this.renderThumbnailDrawer()}
+
       </div>
     )
   }
