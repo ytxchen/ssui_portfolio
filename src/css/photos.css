@@ -1,0 +1,95 @@
+.drawer 
+{
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+  background: white;
+  z-index: 1999;
+}
+
+.projects-drawer 
+{
+  left: 0;
+  width: 20vw;
+  padding: 0;
+}
+
+.thumbnail-drawer 
+{
+  color: white;
+  background: black;
+  left: auto;
+  right: 0;
+  width: 70vw;
+  top: 55px;
+  height: calc(100% - 40px);
+  padding: 0;
+  padding-bottom: 30px;
+  z-index: 2000;
+}
+
+.thumbnail-drawer-button
+{
+  position: fixed;
+  right: 3vw;
+  top: 9vh;
+  visibility: visible;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.open-thumbnail-drawer-button
+{
+  background-image: url("data:image/svg+xml;utf8,<svg fill='#000000' height='32' viewBox='0 0 24 24' width='32' xmlns='http://www.w3.org/2000/svg'><path d='M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  z-index: 0;
+}
+
+.close-thumbnail-drawer-button
+{
+  background-image: url("data:image/svg+xml;utf8,<svg fill='#FFFFFF' height='32' viewBox='0 0 24 24' width='32' xmlns='http://www.w3.org/2000/svg'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+}
+
+.projects-drawer-button
+{
+  position: fixed;
+  left: 3vw;
+  top: 9vh;
+  visibility: visible;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.open-projects-drawer-button
+{
+  background-image: url("data:image/svg+xml;utf8,<svg fill='#000000' height='32' viewBox='0 0 24 24' width='32' xmlns='http://www.w3.org/2000/svg'><path d='M0 0h24v24H0z' fill='none'/><path d='M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'/></svg>");
+  z-index: 0;
+}
+
+.close-projects-drawer-button
+{
+  background-image: url("data:image/svg+xml;utf8,<svg fill='#000000' height='32' viewBox='0 0 24 24' width='32' xmlns='http://www.w3.org/2000/svg'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+}
+
+.photo-project-overview
+{
+  margin-top: 30px;
+  margin-left: 3vw;
+  margin-right: 30px;
+}
+
+.thumbnail
+{
+  height: 75px;
+  margin: 3px;
+  width: auto;
+  cursor: pointer;
+}
+
+.thumbnail:hover
+{
+  opacity: 0.8;
+}
+

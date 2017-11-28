@@ -1,0 +1,100 @@
+* {
+    box-sizing: border-box;
+}
+
+/* body typeface */
+body
+{
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* restyling react-router's Link component */
+a
+{
+  text-decoration: none;
+}
+
+/* 12-column grid def */
+[class*="col-"] {
+  float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+
+/* utility classes */
+.float-left
+{
+  float: left;
+}
+
+.float-right
+{
+  float: right;
+}
+
+.text-align-left
+{
+  text-align: left;
+}
+
+.text-align-right
+{
+  text-align: right;
+}
+
+.web-max-width
+{
+  max-width: 960px;
+  margin: auto;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
+.horizontal-center
+{
+  margin: auto;
+}
+
+
+/* navbar styles */
+.navbar-label
+{
+  font-weight: 700;
+  font-size: 16px;
+  display: inline-block;
+  margin-top: 20px;
+  vertical-align: bottom;
+  color: #9B9B9B;
+}
+.navbar-label-spacer
+{
+  width: 5%;
+  display: inline-block;
+}
+
+.navbar-label-selected
+{
+  color: black;
+}
+
+.yutong-logo
+{
+  font-weight: 300;
+  font-size: 20px;
+  float: right;
+  margin-top: 15px;
+  text-decoration: none;
+}
