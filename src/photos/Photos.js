@@ -12,9 +12,30 @@ class Photos extends Component {
     super(props);
     var state = {
       thumbnailDrawerOpen: false,
-      projectsDrawerOpen : false
+      projectsDrawerOpen : false,
+      currentProject: "mmxvi",
+      currentFrame: 1
     };
     this.state = state;
+    this.projectFrames = {
+      'ue': 16,
+      'bwi': 20,
+      'bwii': 15,
+      'nys': 22,
+      'portrait': 16,
+      'mmxvi': 15,
+      'mmxv': 13,
+      'mmxiv': 18
+    }
+  }
+
+  constructPhotoSrc() {
+    var tag = this.state.currentProject;
+    var frame = this.state.currentFrame;
+    var src = './projects/' + tag + '/full/' + tag + '-';
+    src += frame < 10 ? ('0' + frame.toString()) : (frame.toString());
+    src += '.jpg';
+    return src;
   }
 
   openThumbnailDrawer() {
@@ -25,13 +46,6 @@ class Photos extends Component {
     this.setState({thumbnailDrawerOpen: false});
   }
 
-  renderThumbnailDrawer() {
-    return (
-        <Thumbnails isOpen={this.state.thumbnailDrawerOpen}
-                    close={this.closeThumbnailDrawer.bind(this)}/>
-    );
-  }
-
   openProjectsDrawer() {
     this.setState({projectsDrawerOpen: true});
   }
@@ -40,10 +54,24 @@ class Photos extends Component {
     this.setState({projectsDrawerOpen: false});
   }
 
+  closeDrawers() {
+    this.closeProjectsDrawer();
+    this.closeThumbnailDrawer();
+  }
+
   renderProjectsDrawer() {
     return (
         <PhotoProjects isOpen={this.state.projectsDrawerOpen}
-                       close={this.closeProjectsDrawer.bind(this)}/>
+                       close={this.closeDrawers.bind(this)}
+                       goToProject={this.goToProject.bind(this)}/>
+    );
+  }
+
+  renderThumbnailDrawer() {
+    return (
+        <Thumbnails isOpen={this.state.thumbnailDrawerOpen}
+                    close={this.closeDrawers.bind(this)}
+                    goToFrame={this.goToFrame.bind(this)}/>
     );
   }
 
@@ -75,15 +103,45 @@ class Photos extends Component {
     }
   }
 
+  renderPhotoDisplay() {
+    var src = this.constructPhotoSrc();
+    return (
+      <img className="photo-frame"
+           src={require(`${src}`)}
+           alt={src} />
+    );
+  }
+
+  renderFrameCount() {
+    return (
+      <div className="frame-count">
+        {this.state.currentFrame}/{this.projectFrames[this.state.currentProject]}
+      </div>
+    )
+  }
+
+  goToProject(project) {
+    this.goToFrame(project, 1);
+  }
+
+  goToFrame(project, frame) {
+    this.setState({
+      currentProject: project,
+      currentFrame: frame
+    });
+  }
+
   render() {
     return (
       <div>
         {this.renderProjectsDrawerButton()}
         {this.renderProjectsDrawer()}
-        
+
         {this.renderThumbnailDrawerButton()}
         {this.renderThumbnailDrawer()}
 
+        {this.renderPhotoDisplay()}
+        {this.renderFrameCount()}
       </div>
     )
   }

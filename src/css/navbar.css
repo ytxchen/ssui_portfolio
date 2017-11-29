@@ -1,0 +1,31 @@
+/* navbar styles */
+.navbar-label
+{
+  font-weight: 700;
+  font-size: 16px;
+  display: inline-block;
+  margin-top: 20px;
+  vertical-align: bottom;
+  color: #9B9B9B;
+  user-select: none;
+}
+
+.navbar-label-spacer
+{
+  width: 5%;
+  display: inline-block;
+}
+
+.navbar-label-selected
+{
+  color: black;
+}
+
+.yutong-logo
+{
+  font-weight: 300;
+  font-size: 20px;
+  float: right;
+  margin-top: 15px;
+  text-decoration: none;
+}

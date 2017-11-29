@@ -1,92 +1,48 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './css/shared.css';
+import './css/navbar.css';
 
 class NavBar extends Component {
 
-    renderWorksLabel() {
-      if (this.props.mode==='works') {
-        return (
-          <div className="navbar-label navbar-label-selected">
-            WORKS
-          </div>
-        );
-      } else {
-        return (
-          <Link to="/">
-            <div className="navbar-label">
-              WORKS
-            </div>
-          </Link>
-        );
+    constructLabelClassNames(label) {
+      var classNames = "navbar-label";
+      if (this.props.mode===label) {
+        classNames += " navbar-label-selected";
       }
-    }
-
-    renderPlayLabel() {
-      if (this.props.mode==='play') {
-        return (
-          <div className="navbar-label navbar-label-selected">
-            PLAY
-          </div>
-        );
-      } else {
-        return (
-          <Link to="/play">
-            <div className="navbar-label">
-              PLAY
-            </div>
-          </Link>
-        );
-      }
-    }
-
-    renderPhotosLabel() {
-      if (this.props.mode==='photos') {
-        return (
-          <div className="navbar-label navbar-label-selected">
-            PHOTOS
-          </div>
-        );
-      } else {
-        return (
-          <Link to="/photos">
-            <div className="navbar-label">
-              PHOTOS
-            </div>
-          </Link>
-        );
-      }
-    }
-
-    renderResumeLabel() {
-      if (this.props.mode==='resume') {
-        return (
-          <div className="navbar-label navbar-label-selected">
-            RESUME
-          </div>
-        );
-      } else {
-        return (
-          <Link to="/resume">
-            <div className="navbar-label">
-              RESUME
-            </div>
-          </Link>
-        );
-      }
+      return classNames;
     }
 
     render() {
         return (
             <div className="navbar web-max-width">
 
-                {this.renderWorksLabel()}
+                <Link to="/">
+                  <div className={this.constructLabelClassNames("works")}>
+                    WORKS
+                  </div>
+                </Link>
                 <div className="navbar-label-spacer" />
-                {this.renderPlayLabel()}
+
+                <Link to="/play">
+                  <div className={this.constructLabelClassNames("play")}>
+                    PLAY
+                  </div>
+                </Link>
                 <div className="navbar-label-spacer" />
-                {this.renderPhotosLabel()}
+
+                <Link to="/photos">
+                  <div className={this.constructLabelClassNames("photos")}>
+                    PHOTOS
+                  </div>
+                </Link>
                 <div className="navbar-label-spacer" />
-                {this.renderResumeLabel()}
+
+                <Link to="/resume">
+                  <div className={this.constructLabelClassNames("resume")}>
+                    RESUME
+                  </div>
+                </Link>
 
                 <div className="yutong-logo">
                   <Link to="/">

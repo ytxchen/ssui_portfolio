@@ -4,8 +4,36 @@ import '../css/photos.css';
 
 class PhotoProjects extends Component {
 
+  constructor(props) {
+    super(props);
+    this.projects = [
+      {sectionName: "Projects",
+       projects: [
+         {name: "Unfolding Environments", tag: "ue"},
+         {name: "Black and White", tag: "bwi"},
+         {name: "Black and White II", tag: "bwii"},
+         {name: "New York Stories", tag: "nys"}
+       ]},
+      {sectionName: "Portraits",
+       projects: [
+         {name: "Portraits", tag: "portrait"}
+       ]},
+      {sectionName: "Personal",
+       projects: [
+         {name: "2016", tag: "mmxvi"},
+         {name: "2015", tag: "mmxv"},
+         {name: "2014", tag: "mmxiv"}
+       ]}
+    ]
+  }
+
   close() {
     this.props.close();
+  }
+
+  navigateToProject(tag) {
+    this.props.goToProject(tag);
+    this.close();
   }
 
   constructClassNames() {
@@ -16,21 +44,33 @@ class PhotoProjects extends Component {
     return classNames;
   }
 
+  renderSection(section) {
+    return (
+      <div className="photo-projects-section"
+           key={section.sectionName}>
+        <div className="photo-projects-section-label">
+          {section.sectionName}
+        </div>
+
+        {section.projects.map((project) => {
+          return (
+            <div className="photo-projects-label"
+                 key={project.tag}
+                 onClick={() => this.navigateToProject(project.tag)}>
+                 {project.name}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className={this.constructClassNames()}>
-  color: white;
-  background: black;
-  left: auto;
-  right: 0;
-  width: 70vw;
-  top: 55px;
-  height: calc(100% - 55px);
-  padding: 0;
-  padding-bottom: 30px;
-  /*z-index: 2000;*/
-  transform: translate3d(0, 0, 0);
-  transition: all 400ms cubic-bezier(0.59, 0.07, 0.52, 0.96);
+        {this.projects.map((section, idx) => {
+          return this.renderSection(section);
+        })}
       </div>
     )
   }

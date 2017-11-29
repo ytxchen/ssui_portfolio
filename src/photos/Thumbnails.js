@@ -8,8 +8,7 @@ class Thumbnails extends Component {
    * https://stackoverflow.com/questions/32612912/dynamically-add-images-react-webpack
    */
   srcString(tag, frame) {
-    var src = "";
-    src += './projects/' + tag + '/thumbs/' + tag + '-';
+    var src = './projects/' + tag + '/thumbs/' + tag + '-';
     src += frame < 10 ? ('0' + frame.toString()) : (frame.toString());
     src += '_thumb.jpg';
     return src;
@@ -21,6 +20,7 @@ class Thumbnails extends Component {
       <img className="thumbnail" 
            src={require(`${src}`)} 
            alt={src}
+           key={tag+frame}
            onClick={() => this.navigateToPhoto(tag, frame)}/>
     );
   }
@@ -45,7 +45,8 @@ class Thumbnails extends Component {
   }
 
   navigateToPhoto(projectTag, frame) {
-
+    this.props.goToFrame(projectTag, frame);
+    this.close();
   }
 
   constructClassNames() {
@@ -61,9 +62,9 @@ class Thumbnails extends Component {
       <div className={this.constructClassNames()}>
       
 
-        {this.renderProject('Unfolding Environment', 'ue', 16)}
-        {this.renderProject('BW-TWO', 'bwii', 15)}
+        {this.renderProject('Unfolding Environments', 'ue', 16)}
         {this.renderProject('BW-ONE', 'bwi', 20)}
+        {this.renderProject('BW-TWO', 'bwii', 15)}
         {this.renderProject('New York Stories', 'nys', 22)}
         {this.renderProject('Portraits', 'portrait', 16)}
         {this.renderProject('2016', 'mmxvi', 15)}
