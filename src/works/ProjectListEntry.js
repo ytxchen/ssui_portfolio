@@ -20,12 +20,57 @@ import '../css/landing.css';
 */
 
 class ProjectListEntry extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isMobile: (window.innerWidth < 769)
+        }
+
+        window.addEventListener('resize', this.resize.bind(this));
+    }
+
+    resize() {
+        this.setState({isMobile: (window.innerWidth < 769)});
+    }
+
+    renderMobileDivider() {
+        if (this.state.isMobile) {
+            return (
+                <div className="mobile-project-divider" />
+            );
+        }
+    }
+
+    renderProjectDivider() {
+        if (!this.state.isMobile) {
+            return (
+                <div className="project-divider" />
+            );
+        }
+    }
+
+    renderMoreTag(textFlush) {
+        if (!this.state.isMobile) {
+            return (
+                <Link to={this.props.content.link}>
+                    <div className={"project-list-entry-more text-align-" + textFlush}>
+                        More >
+                    </div>
+                </Link>
+            )
+        }
+    }
+
     render() {
         var imageLocation = this.props.imageLocation;
-        var textFlush = imageLocation;
+        var textFlush = this.state.isMobile ? "left" : imageLocation;
         var textLocation = this.props.textLocation;
         return (
             <div className="project-list-entry web-max-width">
+                {this.renderMobileDivider()}
+
                 <Link to={this.props.content.link}>
                 <div className={"project-list-entry-image-container col-3 float-" + imageLocation}>
                   <img className="project-list-entry-image" src={this.props.content.image} alt={this.props.content.title}/>
@@ -33,21 +78,20 @@ class ProjectListEntry extends Component {
                 </Link>
 
                 <div className={"project-list-entry-details col-8 float-" + textLocation}>
-                    <div className="project-divider" />
+                    {this.renderProjectDivider()}
 
-                    <div className={"project-list-entry-title text-align-" + textFlush}>
-                      {this.props.content.title}
-                    </div>
+                    <Link to={this.props.content.link}>
+                        <div className={"project-list-entry-title text-align-" + textFlush}>
+                          {this.props.content.title}
+                        </div>
+                    </Link>
+                    
 
                     <div className={"project-list-entry-desc text-align-" + textFlush}>
                       {this.props.content.description}
                     </div>
 
-                    <Link to={this.props.content.link}>
-                      <div className={"project-list-entry-more text-align-" + textFlush}>
-                          More >
-                      </div>
-                    </Link>
+                    {this.renderMoreTag(textFlush)}
                 </div>
             </div>
         )

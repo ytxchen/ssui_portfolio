@@ -68,3 +68,9 @@ a
   margin: auto;
 }
 
+@media (max-width:768px) {
+  [class*="col-"] {
+    float: left;
+    width: 100%;
+  }
+}
