@@ -108,7 +108,8 @@ class Photos extends Component {
     return (
       <img className="photo-frame"
            src={require(`${src}`)}
-           alt={src} />
+           alt={src} 
+           onClick={this.goToNextFrame.bind(this)}/>
     );
   }
 
@@ -118,6 +119,22 @@ class Photos extends Component {
         {this.state.currentFrame}/{this.projectFrames[this.state.currentProject]}
       </div>
     )
+  }
+
+  renderLabelNav() {
+    return (
+      <div className="footer-label">
+        <span className={"label-nav" + (this.hasPrevFrame() ? "" : " label-nav-disabled")}
+              onClick={this.goToPrevFrame.bind(this)}>
+              prev 
+        </span>
+        <span>      |      </span>
+        <span className={"label-nav" + (this.hasNextFrame() ? "" : " label-nav-disabled")}
+              onClick={this.goToNextFrame.bind(this)}>
+               next
+        </span>
+      </div>
+    );
   }
 
   goToProject(project) {
@@ -131,6 +148,26 @@ class Photos extends Component {
     });
   }
 
+  hasNextFrame() {
+    return (this.state.currentFrame < this.projectFrames[this.state.currentProject]);
+  }
+
+  hasPrevFrame() {
+    return (this.state.currentFrame > 1);
+  }
+
+  goToNextFrame() {
+    if (this.hasNextFrame()) {
+      this.goToFrame(this.state.currentProject, this.state.currentFrame + 1);
+    }
+  }
+
+  goToPrevFrame() {
+    if (this.hasPrevFrame()) {
+      this.goToFrame(this.state.currentProject, this.state.currentFrame - 1);
+    }
+  }
+
   render() {
     return (
       <div>
@@ -142,6 +179,7 @@ class Photos extends Component {
 
         {this.renderPhotoDisplay()}
         {this.renderFrameCount()}
+        {this.renderLabelNav()}
       </div>
     )
   }

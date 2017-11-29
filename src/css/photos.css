@@ -182,3 +182,25 @@
   user-select: none;
   font-weight: 300;
 }
+
+.footer-label {
+  text-align: center;
+  z-index: 1000;
+  width: 100%;
+  position: fixed;
+  bottom: 7%;
+  user-select: none;
+  display: inline-block;
+  white-space: pre;
+  font-weight: 300;
+  font-size: 22px
+}
+
+.label-nav {
+  cursor: pointer;
+}
+
+.label-nav-disabled {
+  color: #DDDDDD;
+  cursor: default;
+}

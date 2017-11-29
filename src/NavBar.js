@@ -44,11 +44,11 @@ class NavBar extends Component {
                   </div>
                 </Link>
 
-                <div className="yutong-logo">
-                  <Link to="/">
+                <Link to="/">
+                  <div className="yutong-logo">
                     YUTONG CHEN
-                  </Link>
-                </div>
+                  </div>
+                </Link>
             </div>     
         );
     }
