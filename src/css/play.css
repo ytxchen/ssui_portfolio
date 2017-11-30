@@ -1,0 +1,14 @@
+.play-page
+{
+    margin-top: 20%;
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center;
+}
+
+@media (max-width:768px) {
+  .play-page
+  {
+    margin-top: 40vh;
+  }
+}

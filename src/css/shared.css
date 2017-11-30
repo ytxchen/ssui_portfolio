@@ -68,6 +68,23 @@ a
   margin: auto;
 }
 
+.bottom-divider
+{
+  height: 1px;
+  background-color: #9B9B9B;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.footer-centered-text
+{
+  margin-top: 8vh;
+  margin-bottom: 8vh;
+  font-weight: 300;
+  width: 100%;
+  text-align: center;
+}
+
 @media (max-width:768px) {
   [class*="col-"] {
     float: left;
