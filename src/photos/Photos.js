@@ -130,6 +130,15 @@ class Photos extends Component {
     this.closeThumbnailDrawer();
   }
 
+  renderScreenCover() {
+    if (this.state.projectsDrawerOpen || this.state.thumbnailDrawerOpen) {
+      return (
+        <div className="screen-cover"
+             onClick={this.closeDrawers.bind(this)} />
+      );
+    }
+  }
+
   renderProjectsDrawer() {
     return (
         <PhotoProjects isOpen={this.state.projectsDrawerOpen}
@@ -290,6 +299,8 @@ class Photos extends Component {
 
         {this.renderThumbnailDrawerButton()}
         {this.renderThumbnailDrawer()}
+
+        {this.renderScreenCover()}
 
         {this.renderPrevFramePreview()}
         {this.renderPhotoDisplay()}

@@ -39,6 +39,16 @@
   transition: all 400ms cubic-bezier(0.59, 0.07, 0.52, 0.96);
 }
 
+.screen-cover
+{
+  height: calc(100vh - 55px);
+  position: fixed;
+  opacity: 0;
+  top: 55px;
+  width: 100vw;
+  z-index: 1998;
+}
+
 .thumbnail-drawer-closed
 {
   transform: translate3d(100%, 0, 0);

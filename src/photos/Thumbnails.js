@@ -60,8 +60,6 @@ class Thumbnails extends Component {
   render() {
     return (
       <div className={this.constructClassNames()}>
-      
-
         {this.renderProject('Unfolding Environments', 'ue', 16)}
         {this.renderProject('BW-ONE', 'bwi', 20)}
         {this.renderProject('BW-TWO', 'bwii', 15)}
