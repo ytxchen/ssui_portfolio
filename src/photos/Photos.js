@@ -6,17 +6,66 @@ import '../css/photos.css';
 import Thumbnails from './Thumbnails.js';
 import PhotoProjects from './PhotoProjects.js'
 
+const MainFrameAnimation = ({ children, ...props }) => {
+  var classNames = "fade";
+  if (props.animationstyle!=="fade") {
+    classNames = "main-frame-" + props.animationstyle;
+  }
+  return (
+  <CSSTransition
+    {...props}
+    timeout={400}
+    classNames={classNames}
+  >
+    {children}
+  </CSSTransition>
+  );
+};
+
+const PrevFrameAnimation = ({ children, ...props }) => {
+  var classNames = "fade";
+  if (props.animationstyle!=="fade") {
+    classNames = "prev-frame-" + props.animationstyle;
+  }
+  return (
+  <CSSTransition
+    {...props}
+    timeout={400}
+    classNames={classNames}
+  >
+    {children}
+  </CSSTransition>
+  );
+};
+
+const NextFrameAnimation = ({ children, ...props }) => {
+  var classNames = "fade";
+  if (props.animationstyle!=="fade") {
+    classNames = "next-frame-" + props.animationstyle;
+  }
+  return (
+  <CSSTransition
+    {...props}
+    timeout={400}
+    classNames={classNames}
+  >
+    {children}
+  </CSSTransition>
+  );
+};
+
 class Photos extends Component {
 
   constructor(props) {
     super(props);
-    var state = {
+    this.state = {
       thumbnailDrawerOpen: false,
       projectsDrawerOpen : false,
       currentProject: "mmxvi",
-      currentFrame: 1
+      currentFrame: 1,
+      inTransition: false,
+      animationstyle: "to-left"
     };
-    this.state = state;
     this.projectFrames = {
       'ue': 16,
       'bwi': 20,
@@ -26,6 +75,28 @@ class Photos extends Component {
       'mmxvi': 15,
       'mmxv': 13,
       'mmxiv': 18
+    }
+  }
+
+  constructPrevFrameSrc() {
+    if (this.hasPrevFrame) {
+      var tag = this.state.currentProject;
+      var frame = this.state.currentFrame - 1;
+      var src = './projects/' + tag + '/full/' + tag + '-';
+      src += frame < 10 ? ('0' + frame.toString()) : (frame.toString());
+      src += '.jpg';
+      return src;
+    }
+  }
+
+  constructNextFrameSrc() {
+    if (this.hasNextFrame) {
+      var tag = this.state.currentProject;
+      var frame = this.state.currentFrame + 1;
+      var src = './projects/' + tag + '/full/' + tag + '-';
+      src += frame < 10 ? ('0' + frame.toString()) : (frame.toString());
+      src += '.jpg';
+      return src;
     }
   }
 
@@ -106,19 +177,54 @@ class Photos extends Component {
   renderPhotoDisplay() {
     var src = this.constructPhotoSrc();
     return (
-      <img className="photo-frame"
-           src={require(`${src}`)}
-           alt={src} 
-           onClick={this.goToNextFrame.bind(this)}/>
+      <MainFrameAnimation in={!this.state.inTransition}
+                          animationstyle={this.state.animationstyle}>
+        <img className="main-frame-view"
+             src={require(`${src}`)}
+             alt={src} 
+             key={src}/>
+      </MainFrameAnimation>
     );
   }
 
-  renderFrameCount() {
+  renderPrevFramePreview() {
+    if (this.hasPrevFrame()) {
+    var src = this.constructPrevFrameSrc();
     return (
-      <div className="frame-count">
-        {this.state.currentFrame}/{this.projectFrames[this.state.currentProject]}
-      </div>
-    )
+      <PrevFrameAnimation in={!this.state.inTransition}
+                          animationstyle={this.state.animationstyle} >
+        <img className="prev-frame-view"
+             src={require(`${src}`)}
+             alt={src} 
+             onClick={this.goToPrevFrame.bind(this)}/>
+      </PrevFrameAnimation>
+    );
+    }
+  }
+
+  renderNextFramePreview() {
+    if (this.hasNextFrame()) {
+    var src = this.constructNextFrameSrc();
+    return (
+      <NextFrameAnimation in={!this.state.inTransition}
+                          animationstyle={this.state.animationstyle} >
+        <img className="next-frame-view"
+          src={require(`${src}`)}
+          alt={src} 
+          onClick={this.goToNextFrame.bind(this)}/>
+      </NextFrameAnimation>
+    );
+    }
+  }
+
+  renderFrameCount() {
+    if (this.hasNextFrame()) {
+      return (
+        <div className="frame-count">
+          {this.state.currentFrame}/{this.projectFrames[this.state.currentProject]}
+        </div>
+      );
+    }
   }
 
   renderLabelNav() {
@@ -158,13 +264,21 @@ class Photos extends Component {
 
   goToNextFrame() {
     if (this.hasNextFrame()) {
-      this.goToFrame(this.state.currentProject, this.state.currentFrame + 1);
+      this.setState({inTransition:true, animationstyle: "to-left"});
+      setTimeout(() => {
+        this.goToFrame(this.state.currentProject, this.state.currentFrame + 1);
+        this.setState({ inTransition: false });
+      }, 200);
     }
   }
 
   goToPrevFrame() {
     if (this.hasPrevFrame()) {
-      this.goToFrame(this.state.currentProject, this.state.currentFrame - 1);
+      this.setState({inTransition:true, animationstyle: "to-right"});
+      setTimeout(() => {
+        this.goToFrame(this.state.currentProject, this.state.currentFrame - 1);
+        this.setState({ inTransition: false });
+      }, 200);
     }
   }
 
@@ -177,12 +291,16 @@ class Photos extends Component {
         {this.renderThumbnailDrawerButton()}
         {this.renderThumbnailDrawer()}
 
+        {this.renderPrevFramePreview()}
         {this.renderPhotoDisplay()}
+        {this.renderNextFramePreview()}
+
         {this.renderFrameCount()}
         {this.renderLabelNav()}
       </div>
     )
   }
 }
+
 
 export default Photos;

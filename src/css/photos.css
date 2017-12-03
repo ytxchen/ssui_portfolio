@@ -163,15 +163,39 @@
   opacity: 0.6;
 }
 
-.photo-frame
+.main-frame-view
 {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 50vh;
+  left: 50vw;
   transform: translate(-50%, -55%);
   z-index: 1000;
-  max-width: 75%;
-  max-height: 65%;
+  max-width: 75vw;
+  max-height: 65vh;
+  box-shadow: 0px 0px 10px 3px #E8E8E8;
+}
+
+.next-frame-view
+{
+  position: fixed;
+  top: 50vh;
+  left: 100vw;
+  transform: translate(-3vw, -55%);
+  z-index: 1000;
+  max-width: 50vw;
+  max-height: 45vh;
+  box-shadow: 0px 0px 10px 3px #E8E8E8;
+}
+
+.prev-frame-view
+{
+  position: fixed;
+  top: 50vh;
+  right: 100vw;
+  transform: translate(3vw, -55%);
+  z-index: 1000;
+  max-width: 50vw;
+  max-height: 45vh;
   box-shadow: 0px 0px 10px 3px #E8E8E8;
 }
 
@@ -200,6 +224,7 @@
 
 .label-nav {
   cursor: pointer;
+  transition: color 400ms ease-out;
 }
 
 .label-nav-disabled {
@@ -207,6 +232,179 @@
   cursor: default;
 }
 
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.main-frame-to-left-enter {
+  opacity: 0.01;
+  top: 50vh;
+  left: 90vw;
+}
+
+.main-frame-to-left-enter.main-frame-to-left-enter-active{
+  opacity: 1;
+  top: 50vh;
+  left: 50vw;
+  transition: all 200ms ease-out;
+}
+
+.main-frame-to-left-exit {
+  opacity: 1;
+  top: 50vh;
+  left: 50vw;
+}
+
+.main-frame-to-left-exit.main-frame-to-left-exit-active{
+  opacity: 0.01;
+  top: 50vh;
+  left: 10vw;
+  transition: all 200ms ease-in;
+}
+
+.main-frame-to-right-enter {
+  opacity: 0.01;
+  top: 50vh;
+  left: 10vw;
+}
+
+.main-frame-to-right-enter.main-frame-to-right-enter-active{
+  opacity: 1;
+  top: 50vh;
+  left: 50vw;
+  transition: all 200ms ease-out;
+}
+
+.main-frame-to-right-exit {
+  opacity: 1;
+  top: 50vh;
+  left: 50vw;
+}
+
+.main-frame-to-right-exit.main-frame-to-right-exit-active{
+  opacity: 0.01;
+  top: 50vh;
+  left: 90vw;
+  transition: all 200ms ease-in;
+}
+
+.prev-frame-to-left-enter {
+  opacity: 0.01;
+  top: 50vh;
+  right: 90vw;
+}
+
+.prev-frame-to-left-enter.prev-frame-to-left-enter-active{
+  opacity: 1;
+  top: 50vh;
+  right: 100vw;
+  transition: all 200ms ease-out;
+}
+
+.prev-frame-to-left-exit {
+  opacity: 1;
+  top: 50vh;
+  right: 100vw;
+}
+
+.prev-frame-to-left-exit.prev-frame-to-left-exit-active{
+  opacity: 0.01;
+  top: 50vh;
+  right: 110vw;
+  transition: all 200ms ease-in;
+}
+
+.prev-frame-to-right-enter {
+  opacity: 0.01;
+  top: 50vh;
+  right:110vw;
+}
+
+.prev-frame-to-right-enter.prev-frame-to-right-enter-active{
+  opacity: 1;
+  top: 50vh;
+  right: 100vw;
+  transition: all 200ms ease-out;
+}
+
+.prev-frame-to-right-exit {
+  opacity: 1;
+  top: 50vh;
+  right: 100vw;
+}
+
+.prev-frame-to-right-exit.prev-frame-to-right-exit-active{
+  opacity: 0.01;
+  top: 50vh;
+  right: 90vw;
+  transition: all 200ms ease-in;
+}
+
+.next-frame-to-left-enter {
+  opacity: 0.01;
+  top: 50vh;
+  left: 110vw;
+}
+
+.next-frame-to-left-enter.next-frame-to-left-enter-active{
+  opacity: 1;
+  top: 50vh;
+  left: 100vw;
+  transition: all 200ms ease-out;
+}
+
+.next-frame-to-left-exit {
+  opacity: 1;
+  top: 50vh;
+  left: 100vw;
+}
+
+.next-frame-to-left-exit.next-frame-to-left-exit-active{
+  opacity: 0.01;
+  top: 50vh;
+  left: 90vw;
+  transition: all 200ms ease-in;
+}
+
+.next-frame-to-right-enter {
+  opacity: 0.01;
+  top: 50vh;
+  left: 90vw;
+}
+
+.next-frame-to-right-enter.next-frame-to-right-enter-active{
+  opacity: 1;
+  top: 50vh;
+  left: 100vw;
+  transition: all 200ms ease-out;
+}
+
+.next-frame-to-right-exit {
+  opacity: 1;
+  top: 50vh;
+  left: 100vw;
+}
+
+.next-frame-to-right-exit.next-frame-to-right-exit-active{
+  opacity: 0.01;
+  top: 50vh;
+  left: 110vw;
+  transition: all 200ms ease-in;
+}
 
 @media (max-width:768px) {
   .label-nav 

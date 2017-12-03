@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import ReactDOM from 'react-dom';
 
 import '../css/shared.css';
 import '../css/landing.css';
@@ -20,6 +21,21 @@ import '../css/landing.css';
 */
 
 class ProjectListEntry extends Component {
+
+    componentDidMount() {
+        // Get the components DOM node
+        var elem = ReactDOM.findDOMNode(this);
+        // Set the opacity of the element to 0
+        elem.style.opacity = 0;
+        setTimeout(() => {
+            window.requestAnimationFrame(function() {
+                // Now set a transition on the opacity
+                elem.style.transition = "opacity 1500ms";
+                // and set the opacity to 1
+                elem.style.opacity = 1;
+            });
+        }, 1500);
+    }
 
     constructor(props) {
         super(props);
