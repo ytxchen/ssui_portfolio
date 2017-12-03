@@ -58,11 +58,13 @@ class NavBar extends Component {
           </div>
         </Link>
 
+        {/* play section, reserved for future use
         <Link to="/play">
           <div className={this.constructMobileLabelClassNames("play")}>
             PLAY
           </div>
         </Link>
+        */}
 
         <Link to="/photos">
           <div className={this.constructMobileLabelClassNames("photos")}>
@@ -92,12 +94,14 @@ class NavBar extends Component {
           </Link>
           <div className="navbar-label-spacer" />
 
+          {/* play section, reserved for future use
           <Link to="/play">
             <div className={this.constructLabelClassNames("play")}>
               PLAY
             </div>
           </Link>
           <div className="navbar-label-spacer" />
+          */}
 
           <Link to="/photos">
             <div className={this.constructLabelClassNames("photos")}>

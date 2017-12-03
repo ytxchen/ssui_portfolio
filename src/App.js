@@ -71,7 +71,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/play" component={this.renderPlay} />
+          {/* routing for play section, reserved for future use
+          <Route path="/play" component={this.renderPlay} /> */}
           <Route path="/photos" component={this.renderPhotos} />
           <Route path="/resume" component={this.renderResume} />
           <Route path="/projects/:projectName" component={this.renderProject} />
