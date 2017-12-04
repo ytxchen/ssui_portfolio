@@ -78,7 +78,7 @@ class App extends Component {
           <Route path="/photos" component={this.renderPhotos} />
           <Route path="/resume" component={this.renderResume} />
           <Route path="/projects/:projectName" component={this.renderProject} />
-          <Route exact path="/" component={this.renderWorks} />
+          <Route component={this.renderWorks} />
 
         </Switch>
       </BrowserRouter>
