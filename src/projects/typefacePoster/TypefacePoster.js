@@ -4,8 +4,13 @@ import '../../css/projects.css';
 
 import OverviewImage from './images/overview.png';
 import SketchSingle from './images/sketch-single.png';
+import FinalPoster from './images/final-type-poster.png';
 
 class TypefacePoster extends Component {
+
+  componentDidMount() {
+    window.scrollTo(0,0);
+  }
 
   renderTitle() {
     return (
@@ -52,19 +57,35 @@ class TypefacePoster extends Component {
           </div>          
         </div>
 
+        <div className="project-body-section">
+
+          <div className="project-body-heading float-left col-12">
+            Final Poster
+          </div>
+
+          <div className="project-body-text float-left col-12">
+          I thought about the importance of each component of the poster, and how can I allocate space regarding their priority. The core and beauty of a typeface should be its character set, thus I thought about how I can allocate more space on the poster to the character set while maintaining nice balance and structure.   
+          </div>   
+        </div>    
+
+        <img className="project-image col-12"
+               src={FinalPoster}
+               alt="final typeface poster" />
       </div>
     )
   }
 
   render() {
     return (
-      <div className="project-content web-max-width">
-        
-        {this.renderTitle()}
-        {this.renderOverview()}
+      <div>
+        <div className="project-content web-max-width">
+          
+          {this.renderTitle()}
+          {this.renderOverview()}
 
-        {this.renderBody()}
+          {this.renderBody()}
 
+        </div>
       </div>
     )
   }

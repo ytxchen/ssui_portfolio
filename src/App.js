@@ -7,11 +7,12 @@ import NavBar from './NavBar.js';
 import Works from './works/Works.js';
 import Play from './play/Play.js';
 import Photos from './photos/Photos.js';
+import Resume from './resume/Resume.js';
 import Footer from './Footer.js';
 
 // projects
 import PlaceHolder from './projects/PlaceHolder.js';
-import TypefacePoster from './projects/typefacePoster/TypefacePoster.js'
+import TypefacePoster from './projects/typefacePoster/TypefacePoster.js';
 
 class App extends Component {
   renderWorks() {
@@ -46,6 +47,7 @@ class App extends Component {
     return (
       <div className="portfolio">
         <NavBar mode="resume"/>
+        <Resume />
       </div>
     );
   }
@@ -76,7 +78,7 @@ class App extends Component {
           <Route path="/photos" component={this.renderPhotos} />
           <Route path="/resume" component={this.renderResume} />
           <Route path="/projects/:projectName" component={this.renderProject} />
-          <Route component={this.renderWorks} />
+          <Route exact path="/" component={this.renderWorks} />
 
         </Switch>
       </BrowserRouter>
